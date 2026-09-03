@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { easeOut } from "@/lib/motion";
-import { navLinks, site } from "@/lib/site";
+import { cvHref, navLinks, site } from "@/lib/site";
 
 /**
  * "/" only matches exactly; every other link also matches its children, so
@@ -48,7 +48,9 @@ export default function Navbar() {
           <span className="text-gold">.</span>
         </Link>
 
-        <ul className="hidden items-center gap-10 md:flex">
+        {/* Six items plus the CTA need lg to breathe; below that it's the
+            hamburger. */}
+        <ul className="hidden items-center gap-10 lg:flex">
           {navLinks.map((link) => {
             const active = isActive(pathname, link.href);
             return (
@@ -69,13 +71,23 @@ export default function Navbar() {
               </li>
             );
           })}
+          {/* Plain <a>: /cv is static HTML in public/, not a router route. */}
+          <li>
+            <a
+              href={cvHref}
+              className="group relative text-xs uppercase tracking-[0.2em] text-muted transition-colors duration-300 hover:text-cream"
+            >
+              CV
+              <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100" />
+            </a>
+          </li>
         </ul>
 
         {/* Now that /contact exists, the CTA routes there rather than
             opening a mail client straight from the nav. */}
         <Link
           href="/contact"
-          className="hidden rounded-full border border-line px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-cream transition-colors duration-300 hover:border-gold hover:text-gold md:inline-block"
+          className="hidden rounded-full border border-line px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-cream transition-colors duration-300 hover:border-gold hover:text-gold lg:inline-block"
         >
           Let&rsquo;s Talk
         </Link>
@@ -85,7 +97,7 @@ export default function Navbar() {
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-label={open ? "Close menu" : "Open menu"}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
         >
           <motion.span
             animate={open ? { rotate: 45, y: 3 } : { rotate: 0, y: 0 }}
@@ -107,7 +119,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: easeOut }}
-            className="overflow-hidden border-t border-line md:hidden"
+            className="overflow-hidden border-t border-line lg:hidden"
           >
             {/* Closing on click (rather than on a pathname effect) also
                 collapses the menu when tapping the current route. */}
@@ -127,6 +139,16 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
+              <li>
+                {/* Plain <a>: /cv is static HTML in public/, not a router route. */}
+                <a
+                  href={cvHref}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 font-display text-2xl tracking-tight text-cream transition-colors hover:text-gold"
+                >
+                  CV
+                </a>
+              </li>
               <li className="pt-4">
                 <a
                   href={`mailto:${site.email}`}

@@ -28,6 +28,13 @@ export const navLinks: NavLink[] = [
   { label: "Contact", href: "/contact" },
 ];
 
+/**
+ * The CV is self-contained static HTML in /public/cv, not a Next route, so it
+ * is always linked with a plain <a> (full navigation) — kept out of navLinks
+ * because those render as next/link.
+ */
+export const cvHref = "/cv";
+
 export const socialLinks: NavLink[] = [
   { label: "GitHub", href: "https://github.com/mdeswendi" },
   {

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
-import { navLinks, site, socialLinks } from "@/lib/site";
+import { cvHref, navLinks, site, socialLinks } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -50,7 +50,7 @@ export default function Footer() {
                     so it does a full navigation instead of client routing. */}
                 <li>
                   <a
-                    href="/cv"
+                    href={cvHref}
                     className="text-sm text-cream transition-colors duration-300 hover:text-gold"
                   >
                     CV
