@@ -1,26 +1,130 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Design tokens — become utilities: bg-ink, text-gold, border-line, ... */
+@theme {
+  --color-ink: #111111;
+  --color-ink-soft: #171717;
+  --color-line: #262626;
+  --color-cream: #f4f4f2;
+  --color-muted: #9b9b98;
+  --color-gold: #c9a227;
+  --color-gold-soft: #e0be5a;
 }
 
+/* `inline` so the utilities point straight at the next/font variables. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-sora);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-ink);
+}
+
+/* Slim, on-brand scrollbar (Chromium + Firefox). */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-line);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-gold);
+}
+html {
+  scrollbar-color: var(--color-line) var(--color-ink);
+  scrollbar-width: thin;
+}
+
+/* ---------------------------------------------------------------------------
+   Article body — rules that need descendant selectors, so they can't live in
+   src/mdx-components.tsx. Applied via `.article-body` on the MDX wrapper.
+   --------------------------------------------------------------------------- */
+
+/* `code` is styled as an inline pill; inside a code block that must reset. */
+.article-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-cream);
+  font-size: inherit;
+}
+
+/* Compact highlight.js theme in the site palette (rehype-highlight). */
+.article-body .hljs-comment,
+.article-body .hljs-quote {
+  color: #6f6f6c;
+  font-style: italic;
+}
+.article-body .hljs-keyword,
+.article-body .hljs-selector-tag,
+.article-body .hljs-literal,
+.article-body .hljs-doctag {
+  color: var(--color-gold);
+}
+.article-body .hljs-string,
+.article-body .hljs-regexp,
+.article-body .hljs-addition {
+  color: #b8c98a;
+}
+.article-body .hljs-number,
+.article-body .hljs-variable,
+.article-body .hljs-template-variable,
+.article-body .hljs-attr,
+.article-body .hljs-attribute {
+  color: var(--color-gold-soft);
+}
+.article-body .hljs-title,
+.article-body .hljs-section,
+.article-body .hljs-name,
+.article-body .hljs-selector-id,
+.article-body .hljs-selector-class {
+  color: #e6e6e2;
+  font-weight: 600;
+}
+.article-body .hljs-built_in,
+.article-body .hljs-type,
+.article-body .hljs-symbol,
+.article-body .hljs-meta {
+  color: #c9b58a;
+}
+.article-body .hljs-deletion {
+  color: #d08b7a;
+}
+.article-body .hljs-emphasis {
+  font-style: italic;
+}
+.article-body .hljs-strong {
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

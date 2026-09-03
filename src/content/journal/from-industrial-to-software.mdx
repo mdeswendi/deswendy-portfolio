@@ -1,0 +1,105 @@
+---
+title: "From Industrial Technician to Software Developer"
+category: "Learning Journey"
+date: "2026-07-02"
+readingTime: "5 min read"
+coverImage: "/journal/from-industrial-to-software.png"
+excerpt: "How my background in cold storage maintenance and industrial tech prepared me for software development."
+featured: false
+---
+
+Before I wrote software, I kept cold storage running.
+
+That work has a quality software people talk about constantly and rarely
+experience so directly: the feedback loop is brutal and immediate. A
+compressor either holds temperature or it doesn't. Product either survives the
+night or it spoils. There is no staging environment for a refrigeration unit at
+two in the morning.
+
+I think about that a lot now, and I have come to believe the transition was
+less of a career change than it looked from the outside.
+
+## What the work actually was
+
+Industrial maintenance is diagnosis under pressure with incomplete
+information. A unit fails. You have gauge readings, a temperature log, whatever
+the operator noticed, and a system with a dozen interacting parts, any of which
+could be the cause — or a symptom of the real cause somewhere else.
+
+You learn to work backwards from the failure. You learn that the loudest symptom
+is usually not the root cause. And you learn to distinguish "I fixed it" from
+"it is working right now," which are not the same claim.
+
+## Why I went back to study
+
+The honest answer is that I kept finding the same bottleneck.
+
+The technical problems were solvable. The problems around them — tracking which
+unit was serviced when, which parts were ordered, what the recurring failures
+were across a whole site — lived in notebooks and spreadsheets and people's
+heads. The information existed. It just wasn't usable.
+
+I started building small things to fix that for myself. Then I realised I
+preferred building the thing that made the work legible to doing the work. So I
+went to study it properly rather than continuing to improvise.
+
+I already held a D1, so rather than starting over I am continuing to a
+bachelor's in Information Systems at Universitas Subang, studying alongside work
+through the Recognition of Prior Learning track. That detail matters more than
+it sounds: the programme counts the years I spent diagnosing equipment as
+learning, which is exactly the argument this article is making.
+
+## What transferred
+
+Not the domain knowledge. Nothing about refrigeration cycles helps me write
+TypeScript. What transferred was the method.
+
+**Systematic troubleshooting.** Debugging is diagnosis. Reproduce it, isolate
+the variable, change one thing at a time, verify the fix rather than assuming
+it. I already had that discipline; it just moved from a compressor to a stack
+trace.
+
+**System thinking.** Refrigeration taught me that components are only
+meaningful in relation to each other, and that a change in one place surfaces
+somewhere unexpected. That maps almost directly onto how a database schema,
+an API, and a UI constrain each other.
+
+**Respect for failure modes.** In maintenance you plan for the thing breaking,
+because it will. That habit turns into validating input, handling the error
+path, and not assuming the network is reliable.
+
+**Working with non-technical people.** Operators described symptoms in their
+own language, and translating that into a diagnosis was half the job. Clients
+describe software the same way. "It's slow" is a symptom, not a specification.
+
+**Documentation as maintenance.** A service log exists so the next technician —
+often future you — isn't guessing. So does a README.
+
+## What I'm learning now
+
+- [x] PHP and MySQL — the foundation, and what shipped my first real project
+- [x] Laravel — structure, migrations, and an ORM instead of hand-rolled queries
+- [x] Tailwind CSS — design systems I can actually maintain
+- [ ] Next.js and TypeScript — where I'm spending most of my time
+- [ ] AI-assisted automation — bots and integrations that remove repetitive
+      work. I'm currently building a Telegram bot with Hermes AI, deployed on
+      IDCloudHost, to handle routine requests and automate repetitive tasks.
+- [ ] Deployment and infrastructure beyond shared hosting
+
+That bot is the closest thing to my old job — it's the same instinct as
+building a jig so a repetitive task stops consuming attention. Automate the
+predictable part, keep your attention for the part that needs judgement.
+
+## Where this is going
+
+I want to build systems that make messy, real-world operations legible — the
+kind of work I needed and couldn't find when I was on the maintenance side.
+Village information systems, records management for small offices, automation
+for teams too small to have an IT department. Unglamorous software for people
+who are currently doing it on paper.
+
+The career change looks larger on a CV than it feels day to day. I traded one
+set of systems for another. The diagnosis is the same.
+
+> If you can find out why a compressor is short-cycling, you can find out why
+> a request is timing out. The tools are different. The thinking is not.

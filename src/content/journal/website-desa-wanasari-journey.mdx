@@ -1,0 +1,131 @@
+---
+title: "Building Website Desa Wanasari: My Development Journey"
+category: "Web Development"
+date: "2026-08-15"
+readingTime: "6 min read"
+coverImage: "/journal/website-desa-wanasari-journey.png"
+excerpt: "From planning to deployment, here's how I built a digital information platform for Desa Wanasari, Subang."
+featured: true
+---
+
+Most articles about "going digital" start with the technology. This one starts
+with a filing cabinet.
+
+When I first visited the village office in Desa Wanasari, Subang, the
+information residents needed most — organisational structure, budget
+transparency, the village's history, how to request a document — existed. It
+was just spread across printed sheets, a noticeboard, and the memory of the
+staff who happened to be on duty. If you wanted to know something, you came in
+person during office hours.
+
+That is the problem a village website actually solves. Not "modernisation" in
+the abstract, but the specific, boring, valuable thing of letting someone check
+a fact at 9pm without travelling.
+
+## Planning: understanding who actually visits
+
+Before writing any code I sat with the village staff and worked through who
+would use the site. Three groups came out of that conversation:
+
+- **Residents**, looking for procedures, announcements, and contact details.
+- **The village office**, who needed to publish updates without calling me.
+- **Outside visitors** — prospective partners and anyone researching the
+  region's local potential.
+
+That third group mattered more than I expected. Promoting local potential was
+one of the village's stated goals, so the site had to work as a shopfront, not
+only as a noticeboard.
+
+The most useful outcome of the planning stage was a list of what *not* to
+build. No user accounts. No comment threads. No dashboard full of charts nobody
+asked for.
+
+## Choosing the stack
+
+I chose PHP and MySQL, with plain HTML, CSS, and JavaScript on the front end.
+
+That deserves an explanation, because it is not the stack I would reach for on a
+personal project today. The deciding factor was the hosting reality: shared
+hosting with cPanel is what village budgets can sustain, and PHP runs there
+without any build step, container, or Node runtime to keep alive. A stack that
+someone else can pick up, edit, and redeploy from a file manager is worth more
+than a stack that is fashionable.
+
+The schema stayed deliberately small:
+
+```sql
+CREATE TABLE posts (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  title       VARCHAR(200) NOT NULL,
+  slug        VARCHAR(200) NOT NULL UNIQUE,
+  body        TEXT         NOT NULL,
+  category    VARCHAR(50)  NOT NULL,
+  published   TINYINT(1)   NOT NULL DEFAULT 0,
+  created_at  TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+Content, categories, and a publish flag. Everything else — village profile,
+vision and mission, organisational structure — is structured content on top of
+the same few tables.
+
+## Development: the challenges worth writing down
+
+**Content entry had to survive non-technical editors.** My first version of the
+admin form was a bare textarea. It worked perfectly for me and badly for
+everyone else. Pasting from Word brought invisible markup with it, and a single
+unclosed tag could break the page layout. I replaced it with a constrained
+editor and sanitised the output on save rather than on render, so bad input
+never reached the database in the first place.
+
+**Escaping is not optional.** Every value that reaches a page goes through
+`htmlspecialchars`, and every query uses prepared statements:
+
+```php
+$stmt = $pdo->prepare(
+  'SELECT title, body FROM posts WHERE slug = ? AND published = 1'
+);
+$stmt->execute([$slug]);
+$post = $stmt->fetch();
+```
+
+That is unremarkable code, and that is the point. A public-sector site is a
+target precisely because nobody expects it to be defended.
+
+**Images were the real performance problem.** Staff uploaded photos straight
+from a phone — 4MB each, several per article. The page weight was brutal on a
+mobile connection, which is how most residents would actually visit. Resizing
+on upload, rather than asking anyone to remember to resize first, fixed it.
+
+| Metric | Before | After |
+| ------ | ------ | ----- |
+| Average page weight | 6.2 MB | 780 KB |
+| Largest image served | 4.1 MB | 240 KB |
+
+## Deployment
+
+The site runs on shared hosting with a `.id` domain. Deployment is
+unglamorous: files over FTP, database imported through phpMyAdmin, HTTPS via
+the free certificate the host provides.
+
+The part I would tell my past self to take seriously is backups. A content site
+maintained by rotating staff will eventually lose something important, and a
+scheduled database export costs nothing until the day it saves you.
+
+## Lessons learned
+
+**Constraints from hosting shape architecture more than preferences do.** I did
+not pick this stack because it was the best tool in the abstract. I picked it
+because it was the best tool that would still be running, and still be
+maintainable, two years after I handed it over.
+
+**Handover is a feature.** The site is only useful if the village office can
+publish without me. Time spent making the admin panel obvious was worth more
+than any amount of front-end polish.
+
+**Ship the boring version first.** Every feature I cut during planning — the
+ones I was sure someone would ask for — has still not been requested.
+
+The site is still running today, and the village office updates it
+independently. You can see the result at
+[wanasari-subang.id](https://wanasari-subang.id/).
