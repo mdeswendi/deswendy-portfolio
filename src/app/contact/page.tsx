@@ -62,7 +62,9 @@ export default function ContactPage() {
                     alt={site.name}
                     fill
                     sizes="64px"
-                    className="object-cover object-center"
+                    // Face sits in the top third of the portrait, so anchor
+                    // the circular crop to the top rather than the centre.
+                    className="object-cover object-top"
                   />
                 </span>
                 <span>

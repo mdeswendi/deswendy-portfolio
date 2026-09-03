@@ -53,8 +53,9 @@ export default function AboutStory() {
               fill
               priority
               sizes="(min-width: 640px) 40vw, 100vw"
-              // The source is landscape in a 4:5 box, so cover crops
-              // horizontally only — centre keeps the subject framed.
+              // The source is portrait, slightly taller than the 4:5 box, so
+              // cover trims a sliver off top and bottom — centre keeps the
+              // subject framed.
               className="object-cover object-center"
             />
           </div>

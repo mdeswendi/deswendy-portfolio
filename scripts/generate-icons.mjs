@@ -26,8 +26,8 @@ const APP_DIR = path.join(ROOT, "src", "app");
 const ICON_DIR = path.join(ROOT, "public", "icons");
 
 // Face position in the source, as a fraction of width/height.
-const FACE_X = 0.486;
-const FACE_Y = 0.23;
+const FACE_X = 0.47;
+const FACE_Y = 0.33;
 
 const meta = await sharp(SRC).metadata();
 
