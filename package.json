@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "covers": "node scripts/generate-journal-covers.mjs",
-    "diagrams": "node scripts/generate-journal-diagrams.mjs"
+    "diagrams": "node scripts/generate-journal-diagrams.mjs",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
