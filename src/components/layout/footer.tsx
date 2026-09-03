@@ -46,6 +46,16 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+                {/* Static HTML under /public, not a router route — plain <a>
+                    so it does a full navigation instead of client routing. */}
+                <li>
+                  <a
+                    href="/cv"
+                    className="text-sm text-cream transition-colors duration-300 hover:text-gold"
+                  >
+                    CV
+                  </a>
+                </li>
               </ul>
             </div>
 

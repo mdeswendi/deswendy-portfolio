@@ -1,0 +1,570 @@
+<title>CV — Muhammad Deswendi</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Information Systems Student | IT Support & Web Development | Cisco Certified Networking">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Muhammad Deswendi — Curriculum Vitae">
+<meta property="og:description" content="Information Systems Student | IT Support & Web Development | Cisco Certified Networking">
+<meta property="og:url" content="https://deswendy-portfolio.vercel.app/cv/en">
+<meta property="og:image" content="https://deswendy-portfolio.vercel.app/cv/photo.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Muhammad Deswendi — Curriculum Vitae">
+<meta name="twitter:description" content="Information Systems Student | IT Support & Web Development | Cisco Certified Networking">
+<meta name="twitter:image" content="https://deswendy-portfolio.vercel.app/cv/photo.jpg">
+<link rel="canonical" href="https://deswendy-portfolio.vercel.app/cv/en">
+<style>
+  :root{
+    --ink:#221f1a;
+    --sub:#5c5546;
+    --paper:#efe6d4;
+    --panel:#e6dcc6;
+    --accent:#b85a29;
+    --accent-2:#8a3f1c;
+    --route:#2f6357;
+    --route-soft:#dde8e2;
+    --line:#cdbfa0;
+    --card:#f7f2e6;
+    --shadow: 30 20% 20%;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#ece4d3;
+      --sub:#b9ad95;
+      --paper:#15130f;
+      --panel:#1d1a14;
+      --accent:#e08a4f;
+      --accent-2:#f2a86c;
+      --route:#5fa08e;
+      --route-soft:#1b2b26;
+      --line:#3a352a;
+      --card:#1a170f;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#ece4d3; --sub:#b9ad95; --paper:#15130f; --panel:#1d1a14; --accent:#e08a4f; --accent-2:#f2a86c; --route:#5fa08e; --route-soft:#1b2b26; --line:#3a352a; --card:#1a170f;
+  }
+  :root[data-theme="light"]{
+    --ink:#221f1a; --sub:#5c5546; --paper:#efe6d4; --panel:#e6dcc6; --accent:#b85a29; --accent-2:#8a3f1c; --route:#2f6357; --route-soft:#dde8e2; --line:#cdbfa0; --card:#f7f2e6;
+  }
+
+  @font-face{
+    font-family:"cv-serif-fallback";
+    src:local("Iowan Old Style");
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    margin:0;
+    padding:36px 16px 64px;
+    display:flex;
+    justify-content:center;
+    -webkit-font-smoothing:antialiased;
+    transition:background .4s ease, color .4s ease;
+  }
+  .serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
+  .mono{font-family:"Cascadia Code","SF Mono",Consolas,"Liberation Mono",monospace}
+
+  .sheet{width:100%; max-width:900px}
+  .lang-switch{
+    position:absolute;
+    top:0;
+    right:0;
+    font-family:"Cascadia Code","SF Mono",Consolas,monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--route);
+    text-decoration:none;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:4px 12px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .lang-switch:hover{
+    background:var(--route);
+    color:var(--paper);
+  }
+
+  /* ---------- header ---------- */
+  header.masthead{
+    text-align:center;
+    margin-bottom:34px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:"Cascadia Code","SF Mono",Consolas,monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--route);
+    margin:0 0 10px;
+  }
+  .name{
+    font-size:clamp(34px,5vw,50px);
+    margin:0;
+    font-weight:600;
+    letter-spacing:.01em;
+    text-wrap:balance;
+    color:var(--ink);
+  }
+  .tagline{
+    font-size:14.5px;
+    color:var(--sub);
+    margin:10px 0 0;
+    letter-spacing:.02em;
+  }
+  .route-underline{
+    display:block;
+    width:220px;
+    height:14px;
+    margin:16px auto 0;
+  }
+  .route-underline path{
+    fill:none;
+    stroke:var(--accent);
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-dasharray:260;
+    stroke-dashoffset:260;
+    animation:draw 1.4s ease-out .3s forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0 } }
+
+  /* ---------- shell layout ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns: 232px 1fr;
+    gap:26px;
+  }
+
+  /* ---------- sidebar / id card ---------- */
+  .idcard{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px;
+    align-self:start;
+    position:sticky;
+    top:20px;
+  }
+  .photo-frame{
+    width:100%;
+    aspect-ratio:1/1.05;
+    border-radius:8px;
+    overflow:hidden;
+    border:2px solid var(--accent);
+    box-shadow:0 6px 18px hsl(var(--shadow) / .18);
+    margin-bottom:16px;
+    position:relative;
+  }
+  .photo-frame img{
+    width:100%; height:100%; object-fit:cover;
+    transform:scale(1.35);
+    object-position:center 30%;
+    filter:saturate(.94) contrast(1.03);
+  }
+  .idcard h2{
+    font-family:"Cascadia Code","SF Mono",Consolas,monospace;
+    font-size:10.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--route);
+    margin:20px 0 9px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--line);
+  }
+  .idcard h2:first-of-type{margin-top:0}
+  .field{margin-bottom:9px}
+  .field-label{
+    display:block;
+    font-family:"Cascadia Code","SF Mono",Consolas,monospace;
+    font-size:9.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--route);
+    opacity:.85;
+  }
+  .field-value{
+    font-size:12.5px;
+    color:var(--ink);
+    line-height:1.4;
+    word-break:break-word;
+  }
+  .field-value a{color:var(--ink); text-decoration:none; border-bottom:1px dotted var(--accent)}
+  .field-value a:hover{color:var(--accent)}
+
+  .chips{display:flex; flex-wrap:wrap; gap:6px}
+  .chip{
+    font-size:11px;
+    padding:4px 9px;
+    border-radius:20px;
+    background:var(--route-soft);
+    color:var(--route);
+    border:1px solid color-mix(in srgb, var(--route) 35%, transparent);
+    line-height:1.3;
+  }
+
+  /* ---------- main column ---------- */
+  main{min-width:0}
+  section{margin-bottom:28px}
+  section:last-child{margin-bottom:0}
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin:0 0 14px;
+  }
+  .sec-head .num{
+    font-family:"Cascadia Code","SF Mono",Consolas,monospace;
+    font-size:11px;
+    color:var(--accent);
+  }
+  .sec-head h2{
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    font-size:19px;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+  }
+  .sec-head::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .summary{font-size:13.3px; color:var(--sub); line-height:1.68; margin:0; max-width:62ch}
+
+  /* job card */
+  .job-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--accent);
+    border-radius:8px;
+    padding:16px 18px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .job-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px hsl(var(--shadow) / .14);
+  }
+  .job-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; margin-bottom:2px}
+  .job-title{font-size:14.5px; font-weight:700}
+  .job-date{font-family:"Cascadia Code","SF Mono",Consolas,monospace; font-size:11px; color:var(--accent); white-space:nowrap}
+  .job-org{font-size:12.5px; color:var(--route); font-weight:600; margin-bottom:8px}
+  .job-card ul{margin:0; padding-left:18px; font-size:12.5px; color:var(--sub); line-height:1.6}
+  .job-card li{margin-bottom:4px}
+
+  /* education */
+  .edu-grid{display:grid; gap:12px}
+  .edu-item{
+    display:grid;
+    grid-template-columns:96px 1fr;
+    gap:14px;
+    align-items:start;
+  }
+  .edu-year{font-family:"Cascadia Code","SF Mono",Consolas,monospace; font-size:11px; color:var(--accent); padding-top:2px}
+  .edu-title{font-size:13.5px; font-weight:700}
+  .edu-org{font-size:12px; color:var(--sub)}
+
+  /* certs */
+  .cert-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
+    gap:10px;
+  }
+  .cert{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:10px 12px;
+    font-size:12px;
+    color:var(--sub);
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .cert:hover{border-color:var(--accent); transform:translateY(-1px)}
+  .cert b{display:block; color:var(--ink); font-size:12.5px; margin-bottom:2px}
+  .cert span{font-family:"Cascadia Code","SF Mono",Consolas,monospace; font-size:10.5px; color:var(--route)}
+
+  /* trail (career route timeline) */
+  .trail{position:relative; padding-left:30px}
+  .trail-line{
+    position:absolute;
+    left:6px; top:6px; bottom:6px;
+    width:2px;
+    background:linear-gradient(var(--route), var(--accent));
+    transform-origin:top;
+    transform:scaleY(0);
+    transition:transform 1.1s cubic-bezier(.2,.7,.3,1);
+  }
+  .trail.in-view .trail-line{transform:scaleY(1)}
+  .trail-item{
+    position:relative;
+    padding-bottom:20px;
+    opacity:0;
+    transform:translateX(-8px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .trail-item:last-child{padding-bottom:0}
+  .trail.in-view .trail-item{opacity:1; transform:translateX(0)}
+  .trail-item:nth-child(1){transition-delay:.05s}
+  .trail-item:nth-child(2){transition-delay:.15s}
+  .trail-item:nth-child(3){transition-delay:.25s}
+  .trail-item:nth-child(4){transition-delay:.35s}
+  .trail-item:nth-child(5){transition-delay:.45s}
+  .trail-item:nth-child(6){transition-delay:.55s}
+  .trail-node{
+    position:absolute;
+    left:-30px; top:3px;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--accent);
+  }
+  .trail-item:last-child .trail-node{background:var(--accent)}
+  .trail-year{font-family:"Cascadia Code","SF Mono",Consolas,monospace; font-size:10.5px; color:var(--accent); margin-bottom:2px}
+  .trail-title{font-size:13px; font-weight:700; color:var(--ink)}
+  .trail-org{font-size:11.5px; color:var(--sub)}
+
+  /* org & activities */
+  .activity-list{list-style:none; margin:0; padding:0}
+  .activity-list li{
+    font-size:12.5px;
+    color:var(--sub);
+    padding:8px 0;
+    border-bottom:1px dashed var(--line);
+    display:flex;
+    gap:8px;
+  }
+  .activity-list li:last-child{border-bottom:none}
+  .activity-list li::before{content:"→"; color:var(--route); flex-shrink:0}
+
+  footer{
+    text-align:center;
+    margin-top:40px;
+    font-size:10.5px;
+    color:var(--sub);
+    opacity:.7;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important}
+    .trail-line{transform:scaleY(1) !important}
+    .trail-item{opacity:1 !important; transform:none !important}
+    .route-underline path{stroke-dashoffset:0 !important}
+  }
+
+  @media print{
+    :root{
+      --ink:#1a1a1a; --sub:#3f3f3f; --paper:#ffffff; --panel:#f4f0e6; --accent:#a24e22; --accent-2:#7a3315; --route:#274e44; --route-soft:#eef2f0; --line:#cfcfcf; --card:#ffffff;
+    }
+    body{padding:0; background:#fff}
+    .job-card:hover, .cert:hover{transform:none; box-shadow:none}
+    .idcard{position:static; box-shadow:none}
+    .trail-line{transform:scaleY(1); transition:none}
+    .trail-item{opacity:1; transform:none; transition:none}
+    section{break-inside:avoid}
+    .job-card{break-inside:avoid}
+  }
+
+  @media (max-width:680px){
+    .shell{grid-template-columns:1fr}
+    .idcard{position:static}
+    .edu-item{grid-template-columns:72px 1fr}
+  }
+</style>
+
+<div class="sheet">
+  <header class="masthead">
+    <a class="lang-switch mono" href="/cv">ID</a>
+    <p class="eyebrow">Curriculum Vitae</p>
+    <h1 class="name serif">Muhammad Deswendi</h1>
+    <p class="tagline">Information Systems Student &nbsp;·&nbsp; Focus: IT Support &amp; Web Development</p>
+    <svg class="route-underline" viewBox="0 0 220 14" aria-hidden="true">
+      <path d="M2 10 C 40 2, 70 14, 110 7 S 180 0, 218 8" />
+    </svg>
+  </header>
+
+  <div class="shell">
+    <aside class="idcard">
+      <div class="photo-frame">
+        <img src="/cv/photo.jpg" alt="Photo of Muhammad Deswendi">
+      </div>
+
+      <h2>Personal Data</h2>
+      <div class="field">
+        <span class="field-label">Born</span>
+        <span class="field-value">Pemangkat, Dec 14, 1978</span>
+      </div>
+      <div class="field">
+        <span class="field-label">Residence</span>
+        <span class="field-value">Perum. Graha Subang Kencana 1, Subang, West Java</span>
+      </div>
+
+      <h2>Contact</h2>
+      <div class="field">
+        <span class="field-label">Phone</span>
+        <span class="field-value">0811-2321-212</span>
+      </div>
+      <div class="field">
+        <span class="field-label">Email</span>
+        <span class="field-value"><a href="mailto:mdeswendi@gmail.com">mdeswendi@gmail.com</a></span>
+      </div>
+      <div class="field">
+        <span class="field-label">LinkedIn</span>
+        <span class="field-value"><a href="https://www.linkedin.com/in/muhammad-deswendi-889703297/" target="_blank" rel="noopener">/muhammad-deswendi</a></span>
+      </div>
+      <div class="field">
+        <span class="field-label">GitHub</span>
+        <span class="field-value"><a href="https://github.com/mdeswendi" target="_blank" rel="noopener">/mdeswendi</a></span>
+      </div>
+
+      <h2>Skills</h2>
+      <div class="chips">
+        <span class="chip">Analisis & Problem-Solving</span>
+        <span class="chip">Web Development Workflow</span>
+        <span class="chip">AI-Assisted Coding</span>
+        <span class="chip">Basic HTML</span>
+        <span class="chip">Computer Networking</span>
+        <span class="chip">IT Support</span>
+        <span class="chip">MS Office</span>
+        <span class="chip">Adaptif & Cepat Belajar</span>
+      </div>
+    </aside>
+
+    <main>
+      <section>
+        <div class="sec-head"><span class="num mono">01</span><h2>Profile</h2></div>
+        <p class="summary">
+          A professional with over two decades of cross-industry work experience, now pursuing a Bachelor's degree in
+          Information Systems at Universitas Subang. Has a solid foundation in IT support and computer networking,
+          validated through Cisco Networking Academy certifications, is well-versed in using AI tools to assist
+          the application/web development process, and has strong analytical and problem-solving skills. Brings a
+          disciplined work ethic, adapts quickly to new technologies, and is ready to contribute as an
+          intern/entry-level talent in Information Systems and web development.
+        </p>
+      </section>
+
+      <section>
+        <div class="sec-head"><span class="num mono">02</span><h2>Work Experience</h2></div>
+        <div class="job-card">
+          <div class="job-head">
+            <span class="job-title">Technician &amp; IT Staff</span>
+            <span class="job-date mono">Jan 2023 — Present</span>
+          </div>
+          <div class="job-org">Kantor Notaris &amp; PPAT Sofiuddin, S.H., M.Kn</div>
+          <ul>
+            <li>Provided daily IT technical support for office operations, including troubleshooting computer and network devices.</li>
+            <li>Maintained and secured the digital document system and office network infrastructure.</li>
+            <li>Served as the technical point of contact for office staff's hardware and software needs.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-head"><span class="num mono">03</span><h2>Formal Education</h2></div>
+        <div class="edu-grid">
+          <div class="edu-item">
+            <span class="edu-year mono">2025—present</span>
+            <div>
+              <div class="edu-title">Bachelor's in Information Systems (RPL Program)</div>
+              <div class="edu-org">Faculty of Computer Science, Universitas Subang · Semester 2 · Semester 1 GPA: 3.50</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <span class="edu-year mono">1997</span>
+            <div>
+              <div class="edu-title">Senior High School — Science Track</div>
+              <div class="edu-org">SMU Santun Untan, Pontianak, West Kalimantan</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-head"><span class="num mono">04</span><h2>Certifications &amp; Training</h2></div>
+        <div class="cert-grid">
+          <div class="cert"><b>Network Addressing &amp; Basic Troubleshooting</b><span>Cisco Networking Academy · Jan 2026</span></div>
+          <div class="cert"><b>Security and Connectivity Support</b><span>Cisco Networking Academy · Jan 2026</span></div>
+          <div class="cert"><b>Networking Devices &amp; Basic Configuration</b><span>Cisco Networking Academy · Dec 2025</span></div>
+          <div class="cert"><b>Network Support and Security</b><span>Cisco Networking Academy · Dec 2025</span></div>
+          <div class="cert"><b>Networking Basics</b><span>Cisco Networking Academy · Nov 2025</span></div>
+          <div class="cert"><b>HTML Essentials</b><span>Cisco Networking Academy / JS Institute · Oct 2025</span></div>
+          <div class="cert"><b>Programming Course</b><span>Data Computer Informatika (DCI), Pontianak · 1999–2000</span></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-head"><span class="num mono">05</span><h2>Career Track</h2></div>
+        <div class="trail" id="trail">
+          <div class="trail-line"></div>
+          <div class="trail-item">
+            <span class="trail-node"></span>
+            <div class="trail-year mono">1998—2000</div>
+            <div class="trail-title">Reforestation Project Leader</div>
+            <div class="trail-org">PT. Kayu Mukti · Field coordination for reforestation along the West Kalimantan border</div>
+          </div>
+          <div class="trail-item">
+            <span class="trail-node"></span>
+            <div class="trail-year mono">2002—2003</div>
+            <div class="trail-title">Industrial Technician</div>
+            <div class="trail-org">PT. Gayung Nilam Bersambut · Operated industrial machinery (generator sets &amp; contact freezers)</div>
+          </div>
+          <div class="trail-item">
+            <span class="trail-node"></span>
+            <div class="trail-year mono">2007—2012</div>
+            <div class="trail-title">Interprovincial Transport Business Owner</div>
+            <div class="trail-org">Pontianak—Kuching · Founder &amp; operator of a Toyota Innova fleet</div>
+          </div>
+          <div class="trail-item">
+            <span class="trail-node"></span>
+            <div class="trail-year mono">2023—Present</div>
+            <div class="trail-title">Technician &amp; IT Staff</div>
+            <div class="trail-org">Kantor Notaris &amp; PPAT Sofiuddin, S.H., M.Kn</div>
+          </div>
+          <div class="trail-item">
+            <span class="trail-node"></span>
+            <div class="trail-year mono">2025—Present</div>
+            <div class="trail-title">Information Systems Undergraduate Student</div>
+            <div class="trail-org">Universitas Subang · A stepping stone toward a career in technology</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-head"><span class="num mono">06</span><h2>Organizations &amp; Activities</h2></div>
+        <ul class="activity-list">
+          <li>Participant, Student Orientation Program (MABIM) 2025/2026 — Faculty of Computer Science, Universitas Subang</li>
+          <li>Entrepreneurship Practicum "Subang Pride: Student Innovation Based on Local Potential" — Universitas Subang, Feb 2026 (Grade B)</li>
+          <li>Participant, Webinar "Beware of Cyber Threats in Natural Disaster Response" — Best Path Network, Dec 2025</li>
+          <li>Participant, Edunitas ExpertClass Webinar "Building a Safe Work Culture: Implementing K3 (Occupational Health & Safety)" — Nov 2025</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <footer class="mono">Muhammad Deswendi — Curriculum Vitae</footer>
+</div>
+
+<script>
+  (function(){
+    var trail = document.getElementById('trail');
+    if(!trail) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ trail.classList.add('in-view'); return; }
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ trail.classList.add('in-view'); io.disconnect(); }
+        });
+      }, { threshold: .2 });
+      io.observe(trail);
+    } else {
+      trail.classList.add('in-view');
+    }
+  })();
+</script>
