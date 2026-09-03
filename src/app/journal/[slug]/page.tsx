@@ -3,11 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { JsonLd } from "@/components/seo/json-ld";
 import { ArrowLeft, ArrowRight } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/reveal";
 import { formatDate } from "@/lib/format";
 import { getNextPost, getPostBySlug, getPostSlugs } from "@/lib/mdx";
 import { site } from "@/lib/site";
+import { getSiteUrl } from "@/lib/site-url";
 
 /** The post list comes from disk at build time, so any other slug is a 404. */
 export const dynamicParams = false;
@@ -65,8 +67,24 @@ export default async function JournalPostPage(
   const { default: Content } = await import(`@/content/journal/${slug}.mdx`);
   const nextPost = getNextPost(post.slug);
 
+  const base = getSiteUrl();
+
   return (
     <article className="pb-8">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.excerpt,
+          datePublished: post.date,
+          image: `${base}${post.coverImage}`,
+          mainEntityOfPage: `${base}/journal/${post.slug}`,
+          author: { "@type": "Person", name: site.name, url: base },
+          publisher: { "@type": "Person", name: site.name, url: base },
+        }}
+      />
+
       <header className="mx-auto max-w-4xl px-6 pt-16 lg:px-8 lg:pt-24">
         <Reveal>
           <Link
