@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
 import ProjectDetailHero from "@/components/projects/project-detail-hero";
+import ScreenshotGallery from "@/components/projects/screenshot-gallery";
+import { JsonLd } from "@/components/seo/json-ld";
 import { ArrowRight } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/reveal";
 import { TechTags } from "@/components/ui/tech-tags";
@@ -11,8 +13,10 @@ import {
   getNextProject,
   getProjectBySlug,
   getProjectSlugs,
+  type Project,
 } from "@/data/projects";
 import { site } from "@/lib/site";
+import { getSiteUrl } from "@/lib/site-url";
 
 /** The project list is fixed, so any other slug is a 404 rather than a render. */
 export const dynamicParams = false;
@@ -53,12 +57,40 @@ export async function generateMetadata(
   };
 }
 
+/** schema.org CreativeWork for the case study — reuses the shared <JsonLd>. */
+function caseStudySchema(project: Project, base: string) {
+  const sameAs = [project.liveUrl, project.githubUrl].filter(
+    (href): href is string => Boolean(href),
+  );
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.overview ?? project.fullDescription,
+    url: `${base}/projects/${project.slug}`,
+    image: `${base}${project.image}`,
+    author: { "@type": "Person", name: site.name, url: base },
+    keywords: project.techStack.join(", "),
+    ...(project.year ? { dateCreated: project.year } : {}),
+    ...(sameAs.length > 0 ? { sameAs } : {}),
+  };
+}
+
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <p className="flex items-center gap-3 text-[0.6875rem] tracking-[0.2em] text-muted uppercase">
       <span className="h-px w-6 bg-gold" />
       {children}
     </p>
+  );
+}
+
+function SectionHeading({ children }: { children: ReactNode }) {
+  return (
+    <h2 className="mt-6 font-display text-2xl font-semibold tracking-tight text-cream lg:text-3xl">
+      {children}
+    </h2>
   );
 }
 
@@ -72,20 +104,32 @@ export default async function ProjectDetailPage(
     notFound();
   }
 
+  const base = getSiteUrl();
   const nextProject = getNextProject(project.slug);
 
   return (
     <article className="pb-8">
+      <JsonLd data={caseStudySchema(project, base)} />
+
       <ProjectDetailHero project={project} />
 
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        {project.overview && (
+          <section className="border-t border-line py-20 lg:py-28">
+            <Reveal>
+              <SectionLabel>Overview</SectionLabel>
+              <p className="mt-8 max-w-3xl text-lg leading-relaxed text-cream/90 lg:text-xl">
+                {project.overview}
+              </p>
+            </Reveal>
+          </section>
+        )}
+
         <section className="border-t border-line py-20 lg:py-28">
           <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             <Reveal>
               <SectionLabel>The Problem</SectionLabel>
-              <h2 className="mt-6 font-display text-2xl font-semibold tracking-tight text-cream lg:text-3xl">
-                What needed solving
-              </h2>
+              <SectionHeading>What needed solving</SectionHeading>
               <p className="mt-6 text-base leading-relaxed text-muted">
                 {project.problem}
               </p>
@@ -93,9 +137,7 @@ export default async function ProjectDetailPage(
 
             <Reveal delay={0.1}>
               <SectionLabel>The Solution</SectionLabel>
-              <h2 className="mt-6 font-display text-2xl font-semibold tracking-tight text-cream lg:text-3xl">
-                What I built
-              </h2>
+              <SectionHeading>What I built</SectionHeading>
               <p className="mt-6 text-base leading-relaxed text-muted">
                 {project.solution}
               </p>
@@ -103,36 +145,48 @@ export default async function ProjectDetailPage(
           </div>
         </section>
 
-        <section className="border-t border-line py-20 lg:py-28">
-          <Reveal>
-            <SectionLabel>Process</SectionLabel>
-            <h2 className="mt-6 font-display text-2xl font-semibold tracking-tight text-cream lg:text-3xl">
-              How it came together
-            </h2>
-          </Reveal>
+        {project.features && project.features.length > 0 && (
+          <section className="border-t border-line py-20 lg:py-28">
+            <Reveal>
+              <SectionLabel>Features</SectionLabel>
+              <SectionHeading>What it does</SectionHeading>
+            </Reveal>
 
-          <ol className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {project.process.map((step, index) => (
-              <Reveal key={step} delay={index * 0.08}>
-                <li className="h-full rounded-xl border border-line bg-ink-soft p-7 transition-colors duration-500 hover:border-gold/40">
-                  <span className="font-display text-sm text-gold">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-4 font-display text-lg tracking-tight text-cream">
-                    {step}
-                  </p>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
-        </section>
+            <ol className="mt-14 grid gap-x-12 gap-y-6 sm:grid-cols-2">
+              {project.features.map((feature, index) => (
+                <Reveal key={feature} delay={index * 0.06}>
+                  <li className="flex gap-5 border-t border-line pt-5">
+                    <span className="font-display text-sm text-gold">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-base leading-relaxed text-cream/90">
+                      {feature}
+                    </span>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {project.gallery && project.gallery.length > 0 && (
+          <section className="border-t border-line py-20 lg:py-28">
+            <Reveal>
+              <SectionLabel>Screenshots</SectionLabel>
+              <SectionHeading>A look inside</SectionHeading>
+            </Reveal>
+
+            <ScreenshotGallery
+              title={project.title}
+              shots={project.gallery}
+            />
+          </section>
+        )}
 
         <section className="border-t border-line py-20 lg:py-28">
           <Reveal>
             <SectionLabel>Tech Stack</SectionLabel>
-            <h2 className="mt-6 font-display text-2xl font-semibold tracking-tight text-cream lg:text-3xl">
-              Built with
-            </h2>
+            <SectionHeading>Built with</SectionHeading>
             <TechTags
               items={project.techStack}
               variant="solid"
@@ -140,6 +194,30 @@ export default async function ProjectDetailPage(
             />
           </Reveal>
         </section>
+
+        {project.process.length > 0 && (
+          <section className="border-t border-line py-20 lg:py-28">
+            <Reveal>
+              <SectionLabel>Process</SectionLabel>
+              <SectionHeading>How it came together</SectionHeading>
+            </Reveal>
+
+            <ol className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {project.process.map((step, index) => (
+                <Reveal key={step} delay={index * 0.08}>
+                  <li className="h-full rounded-xl border border-line bg-ink-soft p-7 transition-colors duration-500 hover:border-gold/40">
+                    <span className="font-display text-sm text-gold">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="mt-4 font-display text-lg tracking-tight text-cream">
+                      {step}
+                    </p>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+          </section>
+        )}
 
         <section className="border-t border-line py-20">
           <Reveal>

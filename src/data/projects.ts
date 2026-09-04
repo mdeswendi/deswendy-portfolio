@@ -5,11 +5,22 @@ export interface Project {
   category: string;
   description: string;
   fullDescription: string;
+  /**
+   * Case-study fields — optional. The detail page renders each related
+   * section only when its field is present, so older entries stay valid.
+   */
+  year?: string;
+  role?: string;
+  overview?: string;
   problem: string;
   solution: string;
+  features?: string[];
+  outcome?: string;
   process: string[];
   techStack: string[];
   image: string;
+  /** Standalone captioned screenshots for the detail page (never a collage). */
+  gallery?: { src: string; caption: string }[];
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;
@@ -20,10 +31,58 @@ export interface Project {
  *
  * `githubUrl` is set only where a public repository exists. Adding one makes
  * the "View Source" button appear on that project's detail page automatically.
+ *
+ * `process` is left empty until a project has a real, project-specific
+ * process to show — an empty array hides the section rather than printing a
+ * generic "Planning / Design / Development / Testing" list.
  */
 export const projects: Project[] = [
   {
     id: "01",
+    slug: "notaris-ppat-management-system",
+    title: "Notary & PPAT Office Management System",
+    category: "Business Management System",
+    description:
+      "A centralized office management system designed to help Notary and PPAT offices manage clients, legal documents, workflows, and operational activities in one structured platform.",
+    fullDescription:
+      "A centralized office management system designed to help Notary and PPAT offices manage clients, legal documents, workflows, and operational activities in one structured platform.",
+    role: "Full-Stack Developer",
+    overview:
+      "A centralized office management system designed to help Notary and PPAT offices manage clients, legal documents, workflows, and operational activities in one structured platform.",
+    problem:
+      "Notary and PPAT offices handle complex administrative processes involving clients, documents, deadlines, and legal workflows. Without a centralized system, monitoring progress and managing daily operations becomes inefficient.",
+    solution:
+      "Built a digital management platform that connects client management, matter tracking, document organization, workflow processes, and operational activities into a unified system.",
+    features: [
+      "Client and party management",
+      "Project and matter tracking",
+      "Document management",
+      "Workflow and task management",
+      "Calendar and activity scheduling",
+      "Role-based access control",
+    ],
+    process: [],
+    techStack: ["Laravel", "MySQL", "Tailwind CSS", "JavaScript"],
+    image: "/projects/notaris-ppat-dashboard.png",
+    gallery: [
+      {
+        src: "/projects/notaris-ppat-dashboard.png",
+        caption: "Dashboard Overview",
+      },
+      {
+        src: "/projects/notaris-ppat-documents.png",
+        caption: "Document & Deed Management",
+      },
+      {
+        src: "/projects/notaris-ppat-deed-detail.png",
+        caption: "Deed Detail",
+      },
+    ],
+    githubUrl: "https://github.com/mdeswendi/notary-ppat-office-management",
+    featured: true,
+  },
+  {
+    id: "02",
     slug: "website-desa-wanasari",
     title: "Website Profil Desa Wanasari",
     category: "Web Development | Village Digitalization",
@@ -35,35 +94,10 @@ export const projects: Project[] = [
       "Village information needed a better digital platform. Existing methods were not easily accessible to the community.",
     solution:
       "Developed a responsive website for village information management, including profiles, history, vision & mission, community organizations, and public information.",
-    process: ["Planning", "UI Design", "Development", "Testing", "Deployment"],
+    process: [],
     techStack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Web Hosting"],
     image: "/projects/website-desa-wanasari.png",
     liveUrl: "https://wanasari-subang.id/",
-    featured: true,
-  },
-  {
-    id: "02",
-    slug: "notaris-ppat-management-system",
-    title: "Sistem Manajemen Notaris & PPAT",
-    category: "Web Development | Information System",
-    description:
-      "A web-based management system for Notary & PPAT offices to streamline document management.",
-    fullDescription:
-      "A web application that digitises how a notary office handles its documents and daily work. Deed records and client data live in one structured system rather than a physical archive.",
-    problem:
-      "Staff had to search for old documents manually, which took a long time.",
-    solution:
-      "A web-based management system for storing, organising, and searching deed documents and client data quickly and in a structured way.",
-    process: [
-      "Requirements Analysis",
-      "Database Design",
-      "Web Development",
-      "Testing",
-      "Implementation",
-    ],
-    techStack: ["Laravel", "MySQL", "Tailwind CSS", "JavaScript"],
-    image: "/projects/notaris-ppat-management-system.png",
-    githubUrl: "https://github.com/mdeswendi/notary-ppat-office-management",
     featured: false,
   },
   {
@@ -79,13 +113,7 @@ export const projects: Project[] = [
       "There was a need for a digital assistant reachable through Telegram for a range of purposes — information, education, and everyday tasks.",
     solution:
       "Built a Telegram bot with AI API integration, hosted on a server (IDCloudHost), that responds to user commands automatically.",
-    process: [
-      "Architecture Design",
-      "API Integration",
-      "Bot Development",
-      "Testing",
-      "Deployment",
-    ],
+    process: [],
     techStack: ["Python", "Telegram Bot API", "AI API", "Server"],
     image: "/projects/ai-telegram-bot.png",
     featured: false,
@@ -99,16 +127,10 @@ export const projects: Project[] = [
       "A professional company profile website built with PHP and MySQL.",
     fullDescription:
       "A modern, professional company profile website built to strengthen a business's credibility online, presenting company information, services, portfolio, and contact details in one place.",
-    problem:
-      "Many companies still do not have a strong online presence.",
+    problem: "Many companies still do not have a strong online presence.",
     solution:
       "Built a company profile website with PHP and MySQL presenting company information, services, portfolio, and contact details.",
-    process: [
-      "UI Design",
-      "Frontend & Backend Development",
-      "Testing",
-      "Deployment",
-    ],
+    process: [],
     techStack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
     image: "/projects/company-profile.png",
     featured: false,

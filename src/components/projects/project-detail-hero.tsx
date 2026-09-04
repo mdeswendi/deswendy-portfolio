@@ -40,12 +40,25 @@ export default function ProjectDetailHero({ project }: { project: Project }) {
         {project.title}
       </motion.h1>
 
-      <motion.p
-        variants={fadeUp}
-        className="mt-8 max-w-2xl text-base leading-relaxed text-muted lg:text-lg"
-      >
-        {project.fullDescription}
-      </motion.p>
+      {(project.year || project.role) && (
+        <motion.p
+          variants={fadeUp}
+          className="mt-5 text-[0.6875rem] tracking-[0.2em] text-muted uppercase"
+        >
+          {[project.year, project.role].filter(Boolean).join(" · ")}
+        </motion.p>
+      )}
+
+      {/* When the case study has an Overview section, that carries the
+          description — don't repeat it in the hero. */}
+      {!project.overview && (
+        <motion.p
+          variants={fadeUp}
+          className="mt-8 max-w-2xl text-base leading-relaxed text-muted lg:text-lg"
+        >
+          {project.fullDescription}
+        </motion.p>
+      )}
 
       {(project.liveUrl || project.githubUrl) && (
         <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
