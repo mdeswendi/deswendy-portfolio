@@ -17,11 +17,15 @@ import type { Project } from "@/data/projects";
 export default function WorkCard({
   project,
   index,
+  kicker: kickerOverride,
 }: {
   project: Project;
   index: number;
+  /** Home-only label; falls back to the project's own category. */
+  kicker?: string;
 }) {
-  const kicker = project.category.replace(/\s*\|\s*/g, " · ");
+  const kicker =
+    kickerOverride ?? project.category.replace(/\s*\|\s*/g, " · ");
 
   return (
     <motion.article variants={revealUp} className="h-full">
