@@ -6,7 +6,14 @@ import ProjectCard from "@/components/projects/project-card";
 import type { Project } from "@/data/projects";
 import { stagger } from "@/lib/motion";
 
-export default function ProjectsGrid({ projects }: { projects: Project[] }) {
+export default function ProjectsGrid({
+  projects,
+  startIndex = 1,
+}: {
+  projects: Project[];
+  /** Number shown on the first card; the rest count up from it. */
+  startIndex?: number;
+}) {
   return (
     <motion.div
       variants={stagger}
@@ -17,8 +24,8 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
       viewport={{ once: true, amount: 0.05 }}
       className="grid gap-6 md:grid-cols-2 lg:gap-8"
     >
-      {projects.map((project) => (
-        <ProjectCard key={project.id} project={project} />
+      {projects.map((project, i) => (
+        <ProjectCard key={project.id} project={project} index={startIndex + i} />
       ))}
     </motion.div>
   );
