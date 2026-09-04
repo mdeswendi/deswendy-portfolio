@@ -22,7 +22,7 @@ export default function ProjectsGrid({
       // A low `amount` matters here: the grid is taller than the viewport, so
       // the shared 0.3 threshold would hold the cards hidden until scroll.
       viewport={{ once: true, amount: 0.05 }}
-      className="grid gap-6 md:grid-cols-2 lg:gap-8"
+      className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
     >
       {projects.map((project, i) => (
         <ProjectCard key={project.id} project={project} index={startIndex + i} />
