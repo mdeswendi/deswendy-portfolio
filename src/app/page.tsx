@@ -1,7 +1,20 @@
+import type { Metadata } from "next";
+
+import AboutPreview from "@/components/home/about-preview";
+import Capabilities from "@/components/home/capabilities";
+import ClosingCta from "@/components/home/closing-cta";
+import JournalPreview from "@/components/home/journal-preview";
+import SelectedWork from "@/components/home/selected-work";
+import TechStack from "@/components/home/tech-stack";
 import Hero from "@/components/sections/hero";
 import { JsonLd } from "@/components/seo/json-ld";
+import { getAllPosts } from "@/lib/mdx";
 import { site, socialLinks } from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 /**
  * `sameAs` is the important part for ranking on his own name: it tells Google
@@ -56,12 +69,19 @@ function websiteSchema(base: string) {
 
 export default function Home() {
   const base = getSiteUrl();
+  const recentPosts = getAllPosts().slice(0, 3);
 
   return (
     <>
       <JsonLd data={personSchema(base)} />
       <JsonLd data={websiteSchema(base)} />
       <Hero />
+      <SelectedWork />
+      <Capabilities />
+      <TechStack />
+      <AboutPreview />
+      <JournalPreview posts={recentPosts} />
+      <ClosingCta />
     </>
   );
 }
