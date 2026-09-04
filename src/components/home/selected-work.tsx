@@ -71,6 +71,9 @@ export default function SelectedWork() {
           index={1}
           content={leadContent}
           media={leadMedia}
+          // Remove once the real application screenshots replace the
+          // placeholders in public/projects/notaris-ppat-*.png.
+          disclaimer="Interface preview — screenshots will be replaced with the live application version."
         />
 
         <div className="grid gap-6 md:grid-cols-2">

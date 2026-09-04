@@ -39,11 +39,17 @@ export default function FeaturedProject({
   index,
   content,
   media,
+  disclaimer,
 }: {
   project: Project;
   index: number;
   content?: CaseContent;
   media?: CaseMedia;
+  /**
+   * Optional footnote under the card — used while the screenshots are still
+   * placeholders. Remove the prop from the caller once real captures land.
+   */
+  disclaimer?: string;
 }) {
   const kicker =
     content?.kicker ?? project.category.replace(/\s*\|\s*/g, " · ");
@@ -139,6 +145,12 @@ export default function FeaturedProject({
           </div>
         )}
       </Link>
+
+      {disclaimer && (
+        <p className="mt-3 max-w-lg pl-1 text-[0.6875rem] leading-relaxed text-muted">
+          {disclaimer}
+        </p>
+      )}
     </motion.article>
   );
 }
