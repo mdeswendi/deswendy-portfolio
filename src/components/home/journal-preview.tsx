@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+import { revealStagger, revealUp, revealView } from "@/components/home/motion";
 import { SectionHeading } from "@/components/home/section-heading";
 import { ArrowRight } from "@/components/ui/icons";
 import { formatDate } from "@/lib/format";
 import type { Post } from "@/lib/mdx";
-import { fadeUp, stagger } from "@/lib/motion";
 
 /**
  * `Post` is a type-only import, so `lib/mdx`'s `node:fs` never reaches the
@@ -20,11 +20,11 @@ export default function JournalPreview({ posts }: { posts: Post[] }) {
 
   return (
     <motion.section
-      variants={stagger}
+      variants={revealStagger}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      className="mx-auto max-w-6xl border-t border-line px-6 py-20 lg:px-8 lg:py-28"
+      viewport={revealView}
+      className="mx-auto max-w-6xl border-t border-line px-6 py-14 lg:px-8 lg:py-20"
     >
       <SectionHeading
         eyebrow="Journal"
@@ -32,25 +32,27 @@ export default function JournalPreview({ posts }: { posts: Post[] }) {
         action={{ label: "Read the journal", href: "/journal" }}
       />
 
-      <ul className="mt-14 border-t border-line">
+      <ul className="mt-10 border-t border-line">
         {posts.map((post) => (
           <motion.li
             key={post.slug}
-            variants={fadeUp}
+            variants={revealUp}
             className="border-b border-line"
           >
             <Link
               href={`/journal/${post.slug}`}
-              className="group grid gap-3 py-7 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8"
+              className="group grid gap-3 py-6 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8"
             >
               <div>
                 <h3 className="font-display text-lg tracking-tight text-cream transition-colors duration-300 group-hover:text-gold lg:text-xl">
                   {post.title}
                 </h3>
-                <p className="mt-2 text-[0.6875rem] tracking-[0.15em] text-muted uppercase">
-                  {post.category}
-                  <span className="mx-2 text-line">/</span>
+                <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.6875rem] tracking-[0.15em] text-muted uppercase">
+                  <span className="text-gold/90">{post.category}</span>
+                  <span className="text-line">/</span>
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  <span className="text-line">/</span>
+                  <span>{post.readingTime}</span>
                 </p>
               </div>
 

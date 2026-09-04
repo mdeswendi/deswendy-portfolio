@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+import { revealUp } from "@/components/home/motion";
 import { ArrowRight } from "@/components/ui/icons";
-import { fadeUp } from "@/lib/motion";
 
 type SectionHeadingProps = {
   eyebrow: string;
@@ -22,7 +22,7 @@ export function SectionHeading({ eyebrow, title, action }: SectionHeadingProps) 
     <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
       <div>
         <motion.p
-          variants={fadeUp}
+          variants={revealUp}
           className="flex items-center gap-3 text-[0.6875rem] tracking-[0.2em] text-muted uppercase"
         >
           <span className="h-px w-6 bg-gold" />
@@ -30,7 +30,7 @@ export function SectionHeading({ eyebrow, title, action }: SectionHeadingProps) 
         </motion.p>
 
         <motion.h2
-          variants={fadeUp}
+          variants={revealUp}
           className="mt-5 max-w-2xl text-balance font-display text-2xl font-semibold tracking-tight text-cream lg:text-3xl"
         >
           {title}
@@ -38,7 +38,7 @@ export function SectionHeading({ eyebrow, title, action }: SectionHeadingProps) 
       </div>
 
       {action && (
-        <motion.div variants={fadeUp}>
+        <motion.div variants={revealUp}>
           <Link
             href={action.href}
             className="group inline-flex items-center gap-2 text-xs tracking-[0.2em] text-cream uppercase transition-colors duration-300 hover:text-gold"

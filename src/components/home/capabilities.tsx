@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 
+import { revealStagger, revealUp, revealView } from "@/components/home/motion";
 import { SectionHeading } from "@/components/home/section-heading";
 import { ArrowRight } from "@/components/ui/icons";
-import { fadeUp, stagger } from "@/lib/motion";
 
 type Capability = { no: string; title: string; body: string };
 
@@ -26,47 +26,54 @@ const capabilities: Capability[] = [
   },
   {
     no: "04",
-    title: "Networking & IT Support",
-    body: "A Cisco-certified foundation in networking and infrastructure, carried over from years of hands-on industrial technical work.",
+    title: "Digital Experiences",
+    body: "Interfaces that stay clean, fast, and accessible — whichever screen they open on.",
   },
 ];
 
 export default function Capabilities() {
   return (
     <motion.section
-      variants={stagger}
+      variants={revealStagger}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      className="mx-auto max-w-6xl border-t border-line px-6 py-20 lg:px-8 lg:py-28"
+      viewport={revealView}
+      className="mx-auto max-w-6xl border-t border-line px-6 py-14 lg:px-8 lg:py-16"
     >
       <SectionHeading
         eyebrow="What I Build"
         title="Four things I keep coming back to."
       />
 
-      <div className="mt-14 border-t border-line">
+      <div className="mt-10 border-t border-line">
         {capabilities.map((item) => (
           <motion.div
             key={item.no}
-            variants={fadeUp}
-            className="group grid grid-cols-[auto_1fr] items-start gap-x-6 gap-y-3 border-b border-line py-8 sm:grid-cols-[auto_1fr_auto] sm:gap-x-10 lg:py-10"
+            variants={revealUp}
+            className="group grid grid-cols-[auto_1fr] gap-x-6 border-b border-line py-7 sm:gap-x-12 lg:py-8"
           >
             <span className="font-display text-sm text-gold">{item.no}</span>
 
-            <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-10">
-              <h3 className="font-display text-xl font-semibold tracking-tight text-cream transition-colors duration-300 group-hover:text-gold lg:text-2xl">
-                {item.title}
-              </h3>
-              <p className="max-w-xl text-sm leading-relaxed text-muted lg:text-base">
+            <div>
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="font-display text-xl font-semibold tracking-tight text-cream transition-colors duration-300 group-hover:text-gold lg:text-2xl">
+                  {item.title}
+                </h3>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="h-4 w-4 shrink-0 -translate-x-2 text-gold opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                />
+              </div>
+
+              <span
+                aria-hidden="true"
+                className="mt-3 block h-px w-10 bg-gold/60 transition-all duration-300 group-hover:w-20 group-hover:bg-gold"
+              />
+
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted lg:text-base">
                 {item.body}
               </p>
             </div>
-
-            <ArrowRight
-              aria-hidden="true"
-              className="col-start-2 hidden h-4 w-4 -translate-x-2 text-gold opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 sm:col-start-3 sm:block"
-            />
           </motion.div>
         ))}
       </div>
