@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Inter, Sora } from "next/font/google";
 
 import Footer from "@/components/layout/footer";
+import VisitorBadge from "@/components/visitors/visitor-badge";
 import Navbar from "@/components/layout/navbar";
 import MotionProvider from "@/components/providers/motion-provider";
 import { site } from "@/lib/site";
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           <main className="flex-1 pt-20">{children}</main>
           <Footer />
+          <VisitorBadge />
         </MotionProvider>
       </body>
     </html>
