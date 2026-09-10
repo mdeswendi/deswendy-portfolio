@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Inter, Sora } from "next/font/google";
 
 import Footer from "@/components/layout/footer";
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${sora.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-ink font-sans text-cream">
+        <Script src="/visit-tracker.js" strategy="afterInteractive" />
         <MotionProvider>
           <Navbar />
           <main className="flex-1 pt-20">{children}</main>
